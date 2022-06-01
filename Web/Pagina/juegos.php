@@ -24,7 +24,7 @@
         <td><a class="btn btn-outline-light" href="<?php echo "detallesjuegos.php?id=".$columna['id']?>"><?php echo $columna['nombre']?></a></td>
         <td><?php echo $columna['genero']?></td>
         <td><?php echo $columna['fecha_lanzamiento']?></td>
-        <td><?php echo '<img class="imgtabla" src = "data:image/jpg;base64,' . base64_encode($columna['img']) . '" width = 100px" height = "100px"/>' ?></td>
+        <td><?php echo '<img src = "data:image/jpg;base64,' . base64_encode($columna['img']) . '" width = 100px" height = "100px"/>' ?></td>
         <td><?php echo $columna['precio']?></td>
         <?php if(isset($_SESSION['login'])){?>
             <td><button class="btn btn-dark" name="agregar" ?><i class="fa-solid fa-cart-plus" ></i></button></td>

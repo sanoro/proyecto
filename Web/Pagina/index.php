@@ -2,9 +2,8 @@
     
 
     include("../Otros/cabecera.php");
-  
-    //include_once("../Otros/cabeceraBienvenida.php");
     include("../BaseDatos/bbdd.php");
+    include("carrito.php");
 
     $consulta = "Select id,nombre,genero,fecha_lanzamiento,img,precio from media";
 
@@ -18,6 +17,9 @@
 <th>fecha_lanzamiento</th>
 <th></th>
 <th>precio</th>
+<?php if(isset($_SESSION['login'])){?>
+<th></th>
+<?php } ?>
 
 <?php while ($columna = mysqli_fetch_array( $resultado )){?>
         <form method="get"> 

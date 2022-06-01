@@ -17,7 +17,9 @@
 <th></th>
 <th>precio</th>
 <th></th>
-<?php while ($columna = mysqli_fetch_array( $resultado )){?>
+<?php 
+ $total=0; 
+while ($columna = mysqli_fetch_array( $resultado )){?>
         <form method="get"> 
         <tr>
         <input type="hidden" name="id" value="<?php echo $columna['id_lista'] ?>">
@@ -25,14 +27,15 @@
         <td><?php echo '<img class="imgtabla" src = "data:image/jpg;base64,' . base64_encode($columna['img']) . '" width = 100px" height = "100px"/>' ?></td>
         <td><?php echo $columna['precio']?></td>
         <td><a class='btn btn-outline-danger fas fa-trash-alt' href="<?php echo "deletemedia.php?id_lista=".$columna['id_lista']?>"></a></td>
-        </form>
+        <?php $total=$total+$columna['precio']; ?>
         </tr>
-  
-    <?php } ?>
+
+
+<?php } ?>
+<tr><td><?php echo "Total: ".$total ?></td></tr>
     </table>
-
 <a class='btn btn-primary ' href="pedido.php" >Comprar</a>
-
+</form>
 
 
 

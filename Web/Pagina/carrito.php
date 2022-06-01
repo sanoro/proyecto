@@ -45,32 +45,31 @@ if(!$_SESSION['carrito']){
         $fecha="";
         $img="";
         $precio="";
-          $res= $conexion -> query('Select id,nombre,genero,fecha_lanzamiento,img,precio from media where id='.$id) or die("error3");
+          $res= $conexion -> query('Select id,nombre,genero,fecha_lanzamiento,img,precio,cantidad from media where id='.$id) or die("error3");
           $fila =mysqli_fetch_row($res);
           $nombre=$fila[1];
           $genero=$fila[2];
           $fecha=$fila[3];
           $img=$fila[4];
           $precio=$fila[5];
+          $cantidad=1;
             $productos=array(
               'id'=> $id,
               'nombre'=> $nombre,
               'genero'=> $genero,
               'fecha_lanzamiento'=> $fecha,
               'img' => $img,
-              'precio'=>$precio
-          );    
+              'precio'=> $precio,
+              'cantidad'=>$cantidad
+            );    
          
 
         $_SESSION['carrito'][$numeroproducto]=$productos;   
 
-      
-        $consulta = $conexion->prepare("INSERT INTO media_pedido(id,nombre,precio,img,id_usuario)VALUES(?,?,?,?,?)" )or die("error 4");
-        $consulta->bind_Param("isdsi", $id,$nombre,$precio,$img,$_SESSION['id']);
+        $consulta = $conexion->prepare("INSERT INTO media_pedido(id,nombre,precio,img,id_usuario,cantidad)VALUES(?,?,?,?,?,?)" )or die("error 4");
+        $consulta->bind_Param("isdsii", $id,$nombre,$precio,$img,$_SESSION['id'],$cantidad);
         $consulta->execute();
         $consulta->get_result();
-        
-
       }
 
     
